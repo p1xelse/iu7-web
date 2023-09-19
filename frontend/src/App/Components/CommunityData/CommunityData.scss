@@ -1,0 +1,42 @@
+.community-data {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    &__avatar {
+        object-fit: cover;
+        height: 80px;
+        width: 80px;
+        flex-shrink: 0;
+
+        background-color: var(--color-profile-img-background);
+        border: 1px solid var(--color-profile-img-border);
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -khtml-border-radius: 50%;
+        -moz-border-radius: 50%;
+    }
+
+    &__name {
+        font-size: 16px;
+        color: var(--color-profile-name);
+    }
+
+    &__category {
+        font-size: 14px;
+        color: var(--color-profile-name);
+    }
+
+    &__description {
+        font-size: 14px;
+        color: var(--color-profile-name);
+        word-break: break-word;
+        padding-right: 10px;
+    }
+}

@@ -1,0 +1,108 @@
+.root {
+    background-color: var(--color-root-background);
+
+    &__wrapper {
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: var(--big-gap-beetween-blocks);
+    }
+
+    &__header {
+        flex: 0 0 auto;
+
+        background-color: var(--color-header-background);
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
+        padding: 5px 10px;
+    }
+
+    &__footer {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        background-color: var(--color-footer-background);
+    }
+}
+
+
+.root-content {
+    height: 100%;
+    display: grid;
+    gap: 10px;
+    overflow: hidden;
+    padding: 0;
+
+    @media screen and (max-device-width:699px) {
+        grid-template-columns: 1fr;
+    }
+
+    @media screen and (max-width:699px) {
+        grid-template-columns: 1fr;
+    }
+
+    @media screen and (min-width:700px) {
+        grid-template-columns: 1fr 5fr 1fr;
+    }
+
+    &__menu {
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (max-device-width: 700px) {
+            position: absolute;
+            bottom: 0;
+        }
+
+        @media screen and (max-width: 700px) {
+            position: absolute;
+            bottom: 0;
+        }
+    }
+
+    &__menu--left {
+        align-items: flex-end;
+
+        @media screen and (max-device-width: 700px),
+        screen and (max-width: 700px) {
+            position: absolute;
+            align-items: center;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+        }
+    }
+
+    &__menu--right {
+        align-items: flex-start;
+
+        @media screen and (max-device-width:700px) {
+            display: none;
+        }
+
+        @media screen and (max-width:700px) {
+            display: none;
+        }
+    }
+
+    &__main {
+        height: 100%;
+        width: 100%;
+
+        @media screen and (max-width:700px) {
+            height: calc(100% - var(--tablet-menu-height));
+        }
+
+        @media screen and (max-device-width:700px) {
+            height: calc(100% - var(--phone-menu-height));
+        }
+
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--big-gap-beetween-blocks);
+
+        overflow: hidden;
+    }
+}

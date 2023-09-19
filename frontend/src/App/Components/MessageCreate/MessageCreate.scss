@@ -1,0 +1,224 @@
+.message-create {
+    display: grid;
+    grid-template-columns: min-content auto min-content;
+    gap: 8px;
+    padding: 10px 15px;
+    border-top: 1px solid var(--color-chat-message-create-border);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: var(--color-chat-background);
+
+    &__tools {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        min-width: 100px;
+        max-width: 100%;
+    }
+
+    &__textarea {
+        display: inline-block;
+        min-height: 80px;
+
+        padding: 5px 8px;
+
+        border-radius: 10px;
+        border: 2px solid var(--color-chat-message-create-border);
+
+        font-size: 14px;
+
+        background-color: var(--color-chat-message-create-background);
+        color: var(--color-chat-message-create-text);
+    }
+
+    &__textarea:focus {
+        outline-color: var(--color-chat-message-create-border-focus);
+    }
+
+    &__textarea::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+
+    &--err {
+        border: 2px solid red;
+    }
+
+    &__attachments {
+        margin-top: 5px;
+    }
+}
+
+.message-create-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: min-content;
+
+    cursor: pointer;
+
+    border: none;
+    outline: none;
+    border-radius: 8px;
+
+    &--big {
+        background-color: var(--color-button-background);
+        padding: 4px 8px;
+
+
+        &:hover {
+            background-color: #24dc83;
+        }
+
+        &:active {
+            background-color: #24B66F;
+        }
+
+        @media screen and (max-device-width:799px) {
+            width: 10%;
+            min-width: min-content;
+            max-width: 150px;
+            padding: 12px;
+        }
+    }
+
+    &--small {
+        background-color: inherit;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    &__icon {
+        object-fit: contain;
+        width: 20px;
+    }
+
+    &__text {
+        color: var(--color-button-value);
+        text-overflow: ellipsis;
+        font-weight: bolder;
+        font-size: 14px;
+
+        @media screen and (max-device-width:799px) {
+            display: none;
+        }
+    }
+}
+
+
+// ВНИМАНИЕ: Данная комбинация используется со стилями из смайлов
+.message-create-button__smiles:hover {
+    & .smiles {
+        // opacity: 1;
+        display: block;
+    }
+
+    /// George
+    /// 
+    & .stickers {
+        // opacity: 1;
+        display: block;
+    }
+}
+
+// ВНИМАНИЕ: Данная комбинация используется со стилями из смайлов
+.message-create-button__smiles {
+    & .smiles {
+        bottom: 20px;
+    }
+
+    & .smiles:hover {
+        display: block;
+    }
+
+    ///George
+    /// 
+    & .stickers {
+        bottom: 20px;
+    }
+
+    & .stickers:hover {
+        display: block;
+    }
+}
+
+
+
+
+
+
+
+// .message__new {
+//     display: flex;
+//     flex-direction: row;
+//     gap: 10px;
+//     padding: 10px 20px;
+
+//     width: 100%;
+//     border-radius: 10px;
+//     background-color: white;
+// }
+
+// .message__new__tools {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 8px;
+// }
+
+// .message__new__tools__button {
+//     width: 22px;
+//     height: auto;
+//     object-fit: cover;
+//     cursor: pointer;
+// }
+
+// .message__new__tools__button--send {
+//     width: auto;
+//     cursor: pointer;
+//     border-radius: 8px;
+//     padding: 5px 8px;
+//     background-color: var(--color-button-background);
+//     color: var(--color-button-value);
+//     font-weight: bolder;
+//     font-size: 13px;
+// }
+
+// .message__new__content {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 10px;
+//     width: 100%;
+// }
+
+// .message__new__content__textarea {
+//     width: auto;
+//     font-size: 14px;
+//     resize: vertical;
+//     padding: 5px 8px;
+//     min-height: 100px;
+//     height: 100px;
+//     border-radius: 10px;
+//     outline: 2px solid var(--color-feed-card-border);
+//     outline-offset: -2px;
+// }
+
+// .message__new__content__textarea:focus {
+//     outline: 2px solid var(--color-feed-card-border);
+//     outline-offset: -2px;
+// }
+
+// .message__new__content__attachments {
+//     overflow-x: scroll;
+//     display: flex;
+//     flex-direction: row;
+//     gap: 10px;
+//     margin: auto;
+//     display: none;
+// }

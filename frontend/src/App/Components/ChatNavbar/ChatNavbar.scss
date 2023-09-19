@@ -1,0 +1,57 @@
+.navbar-chat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+
+
+    &__nav {
+        display: flex;
+        align-items: center;
+    }
+
+    &__avatar {
+        object-fit: cover;
+        height: 40px;
+        width: 40px;
+
+        background-color: lightgray;
+        border: 1px solid darkgray;
+        outline-offset: -1px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -khtml-border-radius: 50%;
+        -moz-border-radius: 50%;
+        cursor: pointer;
+    }
+
+    &__name {
+        word-wrap: break-word;
+        font-size: 18px;
+        font-weight: bolder;
+        color: var(--color-chat-navbar-name);
+        cursor: pointer;
+    }
+}
+
+.navbar-chat-button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: var(--big-gap-beetween-blocks);
+
+    &__icon {
+        object-fit: cover;
+        height: 24px;
+        width: auto;
+    }
+
+    &__text {
+        color: gray;
+        font-size: 13px;
+    }
+}
+
+.navbar-chat-button:hover {
+    transform: scale(1.05);
+}

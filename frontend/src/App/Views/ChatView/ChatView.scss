@@ -1,0 +1,50 @@
+$scrollbar-padding: 10px;
+$scrollbar-width: 8px;
+
+.chat {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: min-content auto min-content;
+
+    margin-bottom: 15px;
+
+    background-color: var(--color-chat-background);
+    border-radius: 10px;
+
+    &__navbar {
+        padding: 5px 10px;
+        border-bottom: 1px solid var(--color-chat-message-create-border)
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        // TODO colum reverse
+
+        max-height: 100%;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        gap: 12px;
+        padding: var(--big-gap-beetween-blocks);
+        margin: var(--big-gap-beetween-blocks);
+    }
+
+    &__content::-webkit-scrollbar {
+        width: 15px; //calc(2 * $scrollbar-padding + $scrollbar-width);
+    }
+
+    &__content::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0);
+    }
+
+    &__content::-webkit-scrollbar-thumb {
+        // border: $scrollbar-padding solid var(--color-chat-background);
+        border: 5px solid var(--color-feed-card-background);
+        border-radius: 9999px;
+        background-color: lightgray;
+    }
+
+    &__footer {}
+}

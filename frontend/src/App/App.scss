@@ -1,0 +1,81 @@
+@import url('./Themes/Light/LightTheme.css');
+@import url('./Themes/Dark/DarkTheme.css');
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+
+    // standart gap 
+    --gap-beetween-blocks: 5px;
+
+    // big gap
+    --big-gap-beetween-blocks: 10px;
+
+    // phone menu height
+    --phone-menu-height: 40px;
+
+    // tablet menu height
+    --tablet-menu-height: 40px;
+
+
+    // Какая-то проблема с textarea, элемент не пробрасывает родительский шрифт
+    textarea {
+        font-family: Helvetica, Arial, sans-serif;
+        resize: none;
+    }
+
+    // УДАЛЕНИЕ PLACEHOLDER ПРИ ФОКУСЕ
+    input:focus::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: transparent;
+    }
+
+    input:focus:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: transparent;
+    }
+
+    input:focus::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: transparent;
+    }
+
+    input:focus:-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: transparent;
+    }
+
+    input:focus::placeholder {
+        color: transparent;
+    }
+
+    textarea:focus::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: transparent;
+    }
+
+    textarea:focus:-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: transparent;
+    }
+
+    textarea:focus::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: transparent;
+    }
+
+    textarea:focus:-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: transparent;
+    }
+
+    textarea:focus::placeholder {
+        color: transparent;
+    }
+}
+
+// Плавное изменение темы
+* {
+    transition: background-color 0.5s, color 0.5s;
+}
