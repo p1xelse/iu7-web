@@ -13,7 +13,8 @@ TBD
 
 **Use-case диаграмма системы**
 
-TBD
+![iu7-web-usecase](https://github.com/p1xelse/iu7-web/assets/78589385/04a3c033-dc3a-4a61-b7ae-1a5fa588eb3f)
+
 
 **BPMN диаграмма основных бизнес-процессов**
 
