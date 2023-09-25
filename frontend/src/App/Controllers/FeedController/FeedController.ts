@@ -11,12 +11,6 @@ import AttachmentsController from "../AttachmentsController/AttachmentsControlle
 import IController from "../IController/IController";
 
 class FeedController extends IController<FeedView, FeedModel> {
-    private likeThrottleVar: boolean = true;
-    private toggleLikeThrottleVar() {
-        this.likeThrottleVar = false;
-        setTimeout(() => this.likeThrottleVar = true, 250);
-    }
-
     private user: IUser; // TODO delete
     // private currentFeedType: FeedType;
     private currentPage: number;
@@ -230,42 +224,39 @@ class FeedController extends IController<FeedView, FeedModel> {
                 }
 
                 case 'like': {
-                    if (this.likeThrottleVar === true) {
+                    if (!cardId) return;
+                    const likesCountElement = document.getElementById(`feed-card-likes__count-${cardId}`);
 
-                        if (!cardId) return;
-                        const button = <HTMLElement>target.closest('.feed-card__likes-button');
-                        const likesCountElement = document.getElementById(`feed-card__likes-button__count-${cardId}`);
-                        console.log(likesCountElement?.innerText);
+                    const button = <HTMLImageElement>target;
 
+                    // debounce(this.model.likePost, 500);
 
-                        // debounce(this.model.likePost, 500);
-
-                        this.toggleLikeThrottleVar();
-
-                        if (button.classList.contains('feed-card__likes-button-unliked')) {
-                            this.model.likePost(cardId)
-                                .then(() => {
-                                    button.classList.add("feed-card__likes-button-liked");
-                                    button.classList.remove("feed-card__likes-button-unliked")
-                                    if (likesCountElement !== null) {
-                                        likesCountElement.innerText = String(Number(likesCountElement.innerText) + 1);
-                                    }
-                                }).catch(console.log);
-                        }
-
-                        if (button.classList.contains('feed-card__likes-button-liked')) {
-                            this.model.unlikePost(cardId)
-                                .then(() => {
-                                    button.classList.add("feed-card__likes-button-unliked");
-                                    button.classList.remove("feed-card__likes-button-liked")
-                                    if (likesCountElement !== null) {
-                                        if (likesCountElement.innerText !== "0") {
-                                            likesCountElement.innerText = String(Number(likesCountElement.innerText) - 1);
-                                        }
-                                    }
-                                }).catch(console.log);;
-                        }
+                    if (target.classList.contains('feed-card__button__unliked')) {
+                        this.model.likePost(cardId)
+                            .then(() => {
+                                button.src = "../src/img/like_filled_icon.svg";
+                                target.classList.toggle("feed-card__button__liked");
+                                target.classList.remove("feed-card__button__unliked")
+                                if (likesCountElement !== null) {
+                                    likesCountElement.innerText = String(Number(likesCountElement.innerText) + 1);
+                                }
+                            });
                     }
+
+                    if (target.classList.contains('feed-card__button__liked')) {
+                        this.model.unlikePost(cardId)
+                            .then(() => {
+                                button.src = "../src/img/like_icon.svg";
+                                target.classList.toggle("feed-card__button__unliked");
+                                target.classList.remove("feed-card__button__liked")
+                                if (likesCountElement !== null) {
+                                    if (likesCountElement.innerText !== "0") {
+                                        likesCountElement.innerText = String(Number(likesCountElement.innerText) - 1);
+                                    }
+                                }
+                            });
+                    }
+
                     return;
                 }
 
@@ -416,20 +407,16 @@ class FeedController extends IController<FeedView, FeedModel> {
                 const cardId = (<HTMLElement>currentMessage.closest("[data-feed_card_id"))?.dataset['feed_card_id'];
                 if (!cardId) return;
                 const text = this.view.getNewCommentData(cardId);
-                const commentsCount = document.getElementById(`feed-card-comments__count-${cardId}`);
                 const newComment: INewComment = {
                     message: text,
                     post_id: Number(cardId),
                 };
-                this.model.addComment(newComment)
+                this.model.addComment(cardId, newComment)
                     .then(comment => {
                         console.log(comment);
                         this.view.pushCommentToFeedCard(cardId, this.user.id, comment);
                         const area = document.querySelector("textarea");
                         if (area !== null) area.value = "";
-                        if (commentsCount !== null) {
-                            commentsCount.innerText = String(Number(commentsCount.innerText) + 1);
-                        }
                     })
                     .catch(err => {
                         console.log(err);
@@ -477,13 +464,9 @@ class FeedController extends IController<FeedView, FeedModel> {
     }
 
     private deleteComment(cardId: number | string, commentId: number | string): void {
-        const commentsCount = document.getElementById(`feed-card-comments__count-${cardId}`);
         this.model.deleteComment(commentId)
             .then(() => {
                 this.view.removeComment(cardId, commentId);
-                if (commentsCount !== null) {
-                    commentsCount.innerText = String(Number(commentsCount.innerText) - 1);
-                }
             })
             .catch(err => {
                 console.log(err);
@@ -503,22 +486,17 @@ class FeedController extends IController<FeedView, FeedModel> {
                 console.log(err);
             });
     }
-
     private sendNewComment(cardId: number | string): void {
         const text = this.view.getNewCommentData(cardId);
-        const commentsCount = document.getElementById(`feed-card-comments__count-${cardId}`);
         const newComment: INewComment = {
             message: text,
             post_id: Number(cardId),
         };
         this.model.addComment(newComment)
             .then(comment => {
-                if (commentsCount !== null) {
-                    commentsCount.innerText = String(Number(commentsCount.innerText) + 1);
-                }
+                console.log(comment);
                 this.view.pushCommentToFeedCard(cardId, this.user.id, comment);
                 this.view.clearCommentCreation(comment.post_id);
-
             })
             .catch(err => {
                 console.log(err);

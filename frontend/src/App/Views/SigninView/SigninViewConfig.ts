@@ -22,16 +22,16 @@ const signinViewConfig = {
     formTitle: 'Добро пожаловать!',
     inputs: [
         {
-            title: 'Введите E-mail:',
+            title: 'E-mail:',
             type: 'email',
             id: 'email',
-            placeholder: 'E-mail',
+            placeholder: 'George@domain.com',
         },
         {
-            title: 'Введите пароль:',
+            title: 'Пароль:',
             type: 'password',
             id: 'password',
-            placeholder: 'Пароль',
+            placeholder: '*****',
         }
     ],
     submit: {

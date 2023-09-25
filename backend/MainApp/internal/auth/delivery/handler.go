@@ -72,6 +72,8 @@ func (del *Delivery) SignUp(c echo.Context) error {
 		Value:    createdCookie.SessionToken,
 		MaxAge:   int(createdCookie.MaxAge),
 		HttpOnly: true,
+		SameSite: http.SameSiteNoneMode,
+		Secure:   true,
 	})
 
 	return c.JSON(http.StatusCreated, pkg.Response{Body: user})

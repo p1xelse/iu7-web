@@ -31,14 +31,13 @@ class CommunityView extends IView {
     private data: HTMLElement;
     private navbar: HTMLElement;
     private overlay: HTMLElement;
-    private overlayContainer : HTMLElement;
 
     constructor(parent: HTMLElement) {
         super(parent, communityTemplate({}), '.community');
+
         this.data = <HTMLElement>this.element.querySelector('.community__data');
         this.navbar = <HTMLElement>this.element.querySelector('.community__nav');
         this.overlay = <HTMLElement>this.element.querySelector('.community__overlay');
-        this.overlayContainer = <HTMLElement>this.overlay.querySelector('.community__wrapper');
     }
 
     public bindClick(callback: Function): void {
@@ -90,19 +89,14 @@ class CommunityView extends IView {
         inpt.classList.remove('settings-input-with-title--error');
     }
 
-    public showOverlaySettings(data: ICommunityData, avanarUploadElem : HTMLElement): void {
-        this.overlayContainer.innerHTML = '';
-        this.overlayContainer.appendChild(avanarUploadElem);
+    public showOverlaySettings(data: ICommunityData): void {
         
-        const tmp = document.createElement('template');
-        tmp.innerHTML = communitySettingsFormTemplate({config: communitySettingsConfig, data: data});
-        this.overlayContainer.appendChild(tmp.content);
-
+        this.overlay.innerHTML = communitySettingsFormTemplate({config: communitySettingsConfig, data: data});
         this.overlay.classList.remove('community--hidden');
     }
 
     public hideOverlay(): void {
-        this.overlayContainer.innerHTML = ''; 
+        this.overlay.innerHTML = ''; 
         this.overlay.classList.add('community--hidden');
     }
 
