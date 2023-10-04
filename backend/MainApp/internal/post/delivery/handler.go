@@ -99,7 +99,7 @@ func (delivery *Delivery) LikePost(c echo.Context) error {
 // @Failure 500 {object} echo.HTTPError "internal server error"
 // @Failure 401 {object} echo.HTTPError "no cookie"
 // @Failure 403 {object} echo.HTTPError "invalid csrf"
-// @Router   /post/unlike/{id} [put]
+// @Router   /post/unlike/{id} [delete]
 func (delivery *Delivery) UnLikePost(c echo.Context) error {
 	id, err := strconv.ParseUint(c.Param("id"), 10, 64)
 
@@ -207,7 +207,7 @@ func requestSanitizeComment(comment *models.Comment) {
 // @Failure 500 {object} echo.HTTPError "internal server error"
 // @Failure 401 {object} echo.HTTPError "no cookie"
 // @Failure 403 {object} echo.HTTPError "invalid csrf"
-// @Router   /post/edit [post]
+// @Router   /post/edit [put]
 func (delivery *Delivery) UpdatePost(c echo.Context) error {
 	var post models.Post
 	err := c.Bind(&post)
@@ -527,9 +527,9 @@ func NewDelivery(e *echo.Echo, up postsUsecase.PostUseCaseI) {
 	}
 
 	e.POST("/post/create", handler.CreatePost)
-	e.POST("/post/edit", handler.UpdatePost)
+	e.PUT("/post/edit", handler.UpdatePost)
 	e.PUT("/post/like/:id", handler.LikePost)
-	e.PUT("/post/unlike/:id", handler.UnLikePost)
+	e.DELETE("/post/unlike/:id", handler.UnLikePost)
 	e.GET("/post/:id", handler.GetPost)
 	e.GET("/users/:id/posts", handler.GetUserPosts)
 	e.GET("/communities/:id/posts", handler.GetCommunityPosts)
@@ -537,6 +537,6 @@ func NewDelivery(e *echo.Echo, up postsUsecase.PostUseCaseI) {
 	e.DELETE("/post/:id", handler.DeletePost)
 	e.GET("/post/:id/comments", handler.GetComments)
 	e.POST("/post/comment/add", handler.AddComment)
-	//e.POST("/post/comment/edit", handler.UpdateComment)
+	// e.POST("/post/comment/edit", handler.UpdateComment)
 	e.DELETE("/post/comment/:id", handler.DeleteComment)
 }

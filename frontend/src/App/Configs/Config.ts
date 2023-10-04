@@ -22,6 +22,7 @@ const REQUEST_TYPE = {
     POST: 'POST',
     PUT: 'PUT',
     DELETE: 'DELETE',
+    PATCH: 'PATCH',
 };
 
 export interface IApiItem {
@@ -51,7 +52,7 @@ const config: IConfig = {
     api: {
         logout: {
             url: '/logout',
-            method: REQUEST_TYPE.POST,
+            method: REQUEST_TYPE.DELETE,
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             },
@@ -234,7 +235,7 @@ const config: IConfig = {
 
         postEdit: {
             url: '/post/edit',
-            method: REQUEST_TYPE.POST,
+            method: REQUEST_TYPE.PUT,
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             },
@@ -270,7 +271,7 @@ const config: IConfig = {
         },
         postUnlike: {
             url: '/post/unlike/{:id}',
-            method: REQUEST_TYPE.PUT,
+            method: REQUEST_TYPE.DELETE,
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             },
@@ -310,7 +311,7 @@ const config: IConfig = {
 
         userUpdate: {
             url: '/users/update',
-            method: REQUEST_TYPE.PUT,
+            method: REQUEST_TYPE.PATCH,
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             },
@@ -587,7 +588,7 @@ const config: IConfig = {
 
         communitiesEdit: {
             url: '/communities/edit',
-            method: REQUEST_TYPE.POST,
+            method: REQUEST_TYPE.PUT,
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
             },

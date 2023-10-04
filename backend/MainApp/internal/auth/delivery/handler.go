@@ -260,6 +260,6 @@ func NewDelivery(e *echo.Echo, uc authUsecase.UseCaseI) {
 	e.POST("/signin", handler.SignIn)
 	e.POST("/signup", handler.SignUp)
 	e.POST("/create_csrf", handler.CreateCSRF)
-	e.POST("/logout", handler.Logout)
+	e.DELETE("/logout", handler.Logout)
 	e.GET("/auth", handler.Auth)
 }

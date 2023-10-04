@@ -80,7 +80,7 @@ func (delivery *Delivery) CreateCommunity(c echo.Context) error {
 // @Failure 500 {object} echo.HTTPError "internal server error"
 // @Failure 401 {object} echo.HTTPError "no cookie"
 // @Failure 403 {object} echo.HTTPError "invalid csrf or permission denied"
-// @Router   /communities/edit [post]
+// @Router   /communities/edit [put]
 func (delivery *Delivery) UpdateCommunity(c echo.Context) error {
 	var comm models.Community
 	err := c.Bind(&comm)
@@ -257,7 +257,7 @@ func NewDelivery(e *echo.Echo, cu communitiesUsecase.UseCaseI) {
 	}
 
 	e.POST("/communities/create", handler.CreateCommunity)
-	e.POST("/communities/edit", handler.UpdateCommunity)
+	e.PUT("/communities/edit", handler.UpdateCommunity)
 	e.GET("/communities/:id", handler.GetCommunity)
 	e.GET("/communities/search", handler.SearchCommunity)
 	e.GET("/communities", handler.GetAllCommunities)

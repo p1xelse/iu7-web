@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"net/http"
+	"strings"
 
 	authUsecase "writesend/MainApp/internal/auth/usecase"
 	"writesend/MainApp/models"
@@ -23,6 +24,9 @@ func NewMiddleware(authUC authUsecase.UseCaseI) *middleware {
 
 func (m *middleware) Auth(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
+		if strings.HasPrefix(c.Request().URL.Path, "/swagger") {
+			return next(c)
+		}
 		if c.Request().URL.Path == "/signup" || c.Request().URL.Path == "/signin" ||
 			c.Request().URL.Path == "/auth" || c.Request().URL.Path == "/prometheus" ||
 			c.Request().URL.Path == "/favicon.ico" {

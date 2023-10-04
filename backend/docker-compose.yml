@@ -139,6 +139,7 @@ services:
 
 networks:
   mynetwork:
+    external: true
 
 volumes:
   prometheus_data:

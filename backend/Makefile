@@ -1,6 +1,7 @@
 .PHONY: start_bd, init_db, create_tables, drop_tables
 
 start:
+	docker network create mynetwork
 	docker-compose up -d
 
 build-server:

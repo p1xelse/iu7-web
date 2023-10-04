@@ -6,12 +6,14 @@ import (
 	"github.com/labstack/echo/v4"
 	echoMiddleware "github.com/labstack/echo/v4/middleware"
 	"github.com/labstack/gommon/log"
+	echoSwagger "github.com/swaggo/echo-swagger"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
 	"writesend/MainApp/cmd/server"
+	_ "writesend/MainApp/docs"
 	_attachmentDelivery "writesend/MainApp/internal/attachment/delivery"
 	attachmentsRepository "writesend/MainApp/internal/attachment/repository/microservice"
 	attachmentUsecase "writesend/MainApp/internal/attachment/usecase"
@@ -149,6 +151,7 @@ func main() {
 	authMiddleware := middleware.NewMiddleware(authUC)
 	e.Use(authMiddleware.Auth)
 	e.Use(authMiddleware.CSRF)
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 
 	_postsDelivery.NewDelivery(e, postsUC)
 	_authDelivery.NewDelivery(e, authUC)

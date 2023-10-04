@@ -26,7 +26,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "file"
+                    "attachment"
                 ],
                 "summary": "Upload file",
                 "parameters": [
@@ -79,7 +79,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Attachment"
+                    "attachment"
                 ],
                 "summary": "Upload image",
                 "parameters": [
@@ -129,7 +129,7 @@ const docTemplate = `{
                     "Attachment/png"
                 ],
                 "tags": [
-                    "Attachment"
+                    "attachment"
                 ],
                 "summary": "Get Attachment by id",
                 "parameters": [
@@ -638,7 +638,7 @@ const docTemplate = `{
             }
         },
         "/communities/edit": {
-            "post": {
+            "put": {
                 "description": "Update a community",
                 "consumes": [
                     "application/json"
@@ -1377,76 +1377,6 @@ const docTemplate = `{
                 }
             }
         },
-        "/post/comment/edit": {
-            "post": {
-                "description": "Update a comment",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "posts"
-                ],
-                "summary": "Update a comment",
-                "parameters": [
-                    {
-                        "description": "comment info",
-                        "name": "comment",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.Comment"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "success update comment",
-                        "schema": {
-                            "allOf": [
-                                {
-                                    "$ref": "#/definitions/pkg.Response"
-                                },
-                                {
-                                    "type": "object",
-                                    "properties": {
-                                        "body": {
-                                            "$ref": "#/definitions/models.Comment"
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    },
-                    "400": {
-                        "description": "bad request",
-                        "schema": {
-                            "$ref": "#/definitions/echo.HTTPError"
-                        }
-                    },
-                    "401": {
-                        "description": "no cookie",
-                        "schema": {
-                            "$ref": "#/definitions/echo.HTTPError"
-                        }
-                    },
-                    "403": {
-                        "description": "invalid csrf",
-                        "schema": {
-                            "$ref": "#/definitions/echo.HTTPError"
-                        }
-                    },
-                    "500": {
-                        "description": "internal server error",
-                        "schema": {
-                            "$ref": "#/definitions/echo.HTTPError"
-                        }
-                    }
-                }
-            }
-        },
         "/post/comment/{id}": {
             "delete": {
                 "description": "Delete a comment",
@@ -1580,7 +1510,7 @@ const docTemplate = `{
             }
         },
         "/post/edit": {
-            "post": {
+            "put": {
                 "description": "Update a post",
                 "consumes": [
                     "application/json"
@@ -1700,7 +1630,7 @@ const docTemplate = `{
             }
         },
         "/post/unlike/{id}": {
-            "put": {
+            "delete": {
                 "description": "Unlike a post",
                 "produces": [
                     "application/json"
@@ -2298,7 +2228,7 @@ const docTemplate = `{
             }
         },
         "/users/update": {
-            "put": {
+            "patch": {
                 "description": "update user's profile",
                 "consumes": [
                     "application/json"

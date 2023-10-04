@@ -86,7 +86,7 @@ func (del *Delivery) GetUsers(c echo.Context) error {
 // @Failure 404 {object} echo.HTTPError "can't find user with such id"
 // @Failure 401 {object} echo.HTTPError "no cookie"
 // @Failure 403 {object} echo.HTTPError "invalid csrf"
-// @Router   /users/update [put]
+// @Router   /users/update [patch]
 func (del *Delivery) UpdateUser(c echo.Context) error {
 	var user models.User
 	err := c.Bind(&user)
@@ -160,5 +160,5 @@ func NewDelivery(e *echo.Echo, uc userUsecase.UseCaseI) {
 	e.GET("/users/:id", handler.GetProfile)
 	e.GET("/users", handler.GetUsers)
 	e.GET("/users/search/:name", handler.SearchUsers)
-	e.PUT("/users/update", handler.UpdateUser)
+	e.PATCH("/users/update", handler.UpdateUser)
 }

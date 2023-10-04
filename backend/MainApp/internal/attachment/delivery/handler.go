@@ -25,7 +25,7 @@ type delivery struct {
 // GetAttachmentByID godoc
 // @Summary      Get Attachment by id
 // @Description  Get Attachment by id
-// @Tags     	 Attachment
+// @Tags     	 attachment
 // @Param id path int  true  "Attachment ID"
 // @Produce  Attachment/png
 // @Success  200 "success get Attachment"
@@ -58,7 +58,7 @@ func (delivery *delivery) GetAttachmentByID(c echo.Context) error {
 // UploadAttachmentImage godoc
 // @Summary      Upload image
 // @Description  Upload image
-// @Tags     	 Attachment
+// @Tags     	 attachment
 // @Param image formData file  true  "image file"
 // @Accept multipart/form-data
 // @Produce  application/json
@@ -111,7 +111,7 @@ func (delivery *delivery) UploadAttachmentImage(c echo.Context) error {
 // UploadAttachmentFile godoc
 // @Summary      Upload file
 // @Description  Upload file
-// @Tags     	 file
+// @Tags     	 attachment
 // @Param file formData file  true  "file"
 // @Accept multipart/form-data
 // @Produce  application/json

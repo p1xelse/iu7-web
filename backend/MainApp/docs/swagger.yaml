@@ -216,7 +216,7 @@ paths:
             $ref: '#/definitions/echo.HTTPError'
       summary: Get Attachment by id
       tags:
-      - Attachment
+      - attachment
   /attachment/file/upload:
     post:
       consumes:
@@ -251,7 +251,7 @@ paths:
             $ref: '#/definitions/echo.HTTPError'
       summary: Upload file
       tags:
-      - file
+      - attachment
   /attachment/image/upload:
     post:
       consumes:
@@ -286,7 +286,7 @@ paths:
             $ref: '#/definitions/echo.HTTPError'
       summary: Upload image
       tags:
-      - Attachment
+      - attachment
   /auth:
     get:
       description: check user auth
@@ -700,7 +700,7 @@ paths:
       tags:
       - communities
   /communities/edit:
-    post:
+    put:
       consumes:
       - application/json
       description: Update a community
@@ -1198,49 +1198,6 @@ paths:
       summary: Add a comment
       tags:
       - posts
-  /post/comment/edit:
-    post:
-      consumes:
-      - application/json
-      description: Update a comment
-      parameters:
-      - description: comment info
-        in: body
-        name: comment
-        required: true
-        schema:
-          $ref: '#/definitions/models.Comment'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: success update comment
-          schema:
-            allOf:
-            - $ref: '#/definitions/pkg.Response'
-            - properties:
-                body:
-                  $ref: '#/definitions/models.Comment'
-              type: object
-        "400":
-          description: bad request
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-        "401":
-          description: no cookie
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-        "403":
-          description: invalid csrf
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-        "500":
-          description: internal server error
-          schema:
-            $ref: '#/definitions/echo.HTTPError'
-      summary: Update a comment
-      tags:
-      - posts
   /post/create:
     post:
       consumes:
@@ -1285,7 +1242,7 @@ paths:
       tags:
       - posts
   /post/edit:
-    post:
+    put:
       consumes:
       - application/json
       description: Update a post
@@ -1361,7 +1318,7 @@ paths:
       tags:
       - posts
   /post/unlike/{id}:
-    put:
+    delete:
       description: Unlike a post
       parameters:
       - description: Post ID
@@ -1709,7 +1666,7 @@ paths:
       tags:
       - users
   /users/update:
-    put:
+    patch:
       consumes:
       - application/json
       description: update user's profile
